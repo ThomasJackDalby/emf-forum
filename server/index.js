@@ -55,7 +55,8 @@ app.post('/threads', function(req, res) {
 app.get('/threads', function(req, res) {
     db.find({ type: 'thread'}, function(err, docs){
         if (err) logger.info("error");
-        res.send(docs.map(function(source) {
+        res.
+        res.json(docs.map(function(source) {
             return {
                 id: source.threadID,
                 title: source.title
@@ -70,15 +71,15 @@ app.get('/threads/:threadID', function(req, res) {
     db.find({ threadID: threadID, type: "thread" }, function(err, docs) {
         if (err) {
             logger.error("Ah shit..");
-            res.send({ error: "Something went wrong with the database." });
+            res.json({ error: "Something went wrong with the database." });
             return;
         }
         console.log(docs);
         if (docs.length == 0) {
-            res.send({ error: "No matching thread found." });
+            res.json({ error: "No matching thread found." });
             return;
         }
-        res.send({
+        res.json({
             id: docs[0].threadID,
             title: docs[0].title,
             comments: docs[0].comments.map(function(source) {
