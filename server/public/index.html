@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>EMF Forum</h1>
+        <h3>A place for all!</h3>
+        <div id="threads" name="threads">
+
+        </div>
+        <script>
+            console.log("Loading threads...");
+            $.get("/threads", function(data){
+                console.log(data);
+                var threadsDiv = document.getElementById("threads");
+                for(let i=0;i<data.length;i++){
+                    var thread = data[i];
+
+                    var threadDiv = document.createElement("div");
+                    var threadLink = document.createElement("a");
+                    threadLink.innerHTML = thread.title;
+                    threadLink.href = "/thread?id="+thread.id;
+                    console.log(threadLink.href);
+                    threadDiv.appendChild(threadLink);
+                    threadsDiv.appendChild(threadDiv);
+                }
+            });
+        </script>    
+    </body>
+</html>
