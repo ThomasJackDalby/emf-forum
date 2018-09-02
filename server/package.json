@@ -1,0 +1,19 @@
+{
+  "name": "emf-forum",
+  "version": "1.0.0",
+  "description": "A simple forum for the emf badge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bunyan": "^1.8.12",
+    "express": "^4.16.3",
+    "nedb": "^1.8.0",
+    "request": "^2.88.0",
+    "save": "^2.3.2"
+  }
+}
