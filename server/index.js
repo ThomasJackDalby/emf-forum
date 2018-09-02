@@ -55,7 +55,6 @@ app.post('/threads', function(req, res) {
 app.get('/threads', function(req, res) {
     db.find({ type: 'thread'}, function(err, docs){
         if (err) logger.info("error");
-        res.
         res.json(docs.map(function(source) {
             return {
                 id: source.threadID,
