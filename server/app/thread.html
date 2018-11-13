@@ -1,0 +1,9 @@
+<div ng-controller="thread.controller">
+    <h1>{{ title }}</h1>
+    <div ng-repeat="comment in comments track by $index">{{ comment }}</div>
+    <form ng-submit="submit()">
+        <input ng-model="comment" type="text"></input>
+        <input type="submit"></input>
+    </form>
+    <a href="#!/">Back to the index</a>
+</div>

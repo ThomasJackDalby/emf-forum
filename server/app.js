@@ -39,16 +39,16 @@ db.getAutoId = function(onFind) {
     return db;
 }
 var app = express();
-app.use(express.static('public'));
+app.use(express.static('app'));
 app.use(log);
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.json());
 app.post('/threads', function(req, res) {
     db.getAutoId(function(err, id) {
         var title = req.body.title;
         logger.info("Creating new thread titled: " + title);
         db.insert({ threadID: id, type: 'thread', title: title , comments: [] });
-        res.send();
+        res.redirect("/index.html");
     });
 });
 
@@ -91,7 +91,6 @@ app.get('/threads/:threadID', function(req, res) {
 app.post('/threads/:threadID', function(req, res) {
     var threadID = parseInt(req.params.threadID);
     logger.info("POST request for comment on thread [" + threadID + "]");
-
     db.find({ threadID: threadID, type: "thread" }, function(err, docs) {
         if (err) {
             logger.error("Ah shit..");
@@ -115,7 +114,4 @@ app.post('/threads/:threadID', function(req, res) {
     });
 });
 
-
-app.listen(80, function() {
-    console.log("Server running at http://127.0.0.1:"+port+"/");
-});
+module.exports = app;

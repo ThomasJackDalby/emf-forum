@@ -1,0 +1,8 @@
+<div>
+    <h1>{{ title }}</h1>
+    <ul>
+        <li ng-repeat="thread in threads">
+            <a href="#!thread/{{thread.id}}">ID: {{ thread.id }} Title: {{ thread.title }}</a>
+        </li>
+    </ul>
+</div>
